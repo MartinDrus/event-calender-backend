@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 // Middleware fuer CROSS-ORIGIN-REQUEST
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://event-calender-react.vercel.app',
     credentials: true
 }));
 
