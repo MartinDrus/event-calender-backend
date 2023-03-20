@@ -28,7 +28,7 @@ export async function startMailService(){
 // Sendet eine Verifizierungs-E-Mail an den Benutzer mit dem angegebenen Benutzer-E-Mail und dem Verifizierungs-Token
 function sendVerificationEmail(userEmail, verificationToken) {
     let mailOptions = {
-        from: 'event-calender@outlook.com', // Die E-Mail-Adresse des Absenders
+        from: 'eventcalenderresponse@outlook.com', // Die E-Mail-Adresse des Absenders
         to: userEmail, // Die E-Mail-Adresse des Empfängers
         subject: 'Please verify your email', // Der Betreff der E-Mail
         html: `<p>Please click on the following link to verify your email: <a href="http://localhost:8080/auth/verify?t=${verificationToken}" target="_blank">Verify Email</a></p>` // Der Inhalt der E-Mail als HTML-Code
