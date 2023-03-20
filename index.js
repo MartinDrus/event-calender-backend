@@ -42,6 +42,6 @@ await startMailService();
 
 // ----------------------------------------------------------
 // Starte Server auf in der Config hinterlegtem Port
-app.listen(PORT, () => {
-    console.log(`Server running`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on http://localhost:${process.env.PORT}`);
 });
