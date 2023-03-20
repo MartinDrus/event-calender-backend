@@ -41,8 +41,6 @@ export async function registerNewUser(req, res) {
 
         // Erstelle Token mit den Nutzerdaten
         const token = generateJsonWebToken(payload, duration);
-        console.log("🚀 ~ file: user.controller.js:116 ~ loginUser ~ token:", token)
-
 
         // Sending mail 
         sendVerificationEmail(body.email, verificationToken)
@@ -54,10 +52,7 @@ export async function registerNewUser(req, res) {
         }
 
         // Setze Cookie mit Token
-        res.cookie('access_token', `Bearer ${token}`, options)
-
-        // Sende Erfolgsmeldung zurueck
-        res.json({
+        res.cookie('access_token', `Bearer ${token}`, options).send({
             success: true,
             message: `"Registration successful - Please check your Mails "`,
         })
@@ -115,7 +110,6 @@ export async function loginUser(req, res, next) {
 
             // Erstelle Token mit den Nutzerdaten
             const token = generateJsonWebToken(payload, duration);
-            console.log("🚀 ~ file: user.controller.js:116 ~ loginUser ~ token:", token)
 
             // Konfiguration für das Cookie
             let options = {
@@ -124,9 +118,7 @@ export async function loginUser(req, res, next) {
             }
 
             // Setze Cookie mit Token
-            res.cookie('access_token', `Bearer ${token}`, options)
-            
-            res.send({
+            res.cookie('access_token', `Bearer ${token}`, options).send({
                 success: true,
                 message: `User ${user.username} logged in successfully!`,
             })
@@ -214,7 +206,7 @@ export async function verifyEmail(req, res, next) {
     try {
 
         await UserModel.verifyUser(emailToken);
-        res.redirect('http://localhost:3000/login');
+        res.redirect('https://event-calender-react.vercel.app/login');
 
     } catch (error) {
         if(!error.cause) res.status(400).send(error.message)
@@ -224,6 +216,7 @@ export async function verifyEmail(req, res, next) {
 }
 
 export async function refreshNewVerification(req, res, next) {
+    //todo
     const jwtPayload = req.tokenPayload;
     console.log("🚀 ~ file: user.controller.js:170 ~ refreshNewVerification ~ jwtPayload:", jwtPayload)
 
